@@ -1,6 +1,7 @@
+import { Configuration } from '@nuxt/types'
 import colors from 'vuetify/es5/util/colors'
 
-export default {
+const nuxtConfig: Configuration = {
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
@@ -42,6 +43,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    '@/plugins/composition-api'
   ],
   /*
   ** Auto import components
@@ -105,3 +107,5 @@ export default {
     }
   }
 }
+
+module.exports = nuxtConfig
