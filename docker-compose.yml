@@ -5,15 +5,13 @@ services:
     build:
       context: front
     ports:
-      - 8000:8000
+      - 3000:3000
     volumes:
       - ./front/src:/src:cached
     tty: true
     stdin_open: true
     environment:
       - CHOKIDAR_USEPOLLING=true
-    depends_on:
-      - proxy
   back:
     container_name: back
     build:
@@ -46,3 +44,4 @@ services:
       - 8000:80
     depends_on:
       - back
+      - front
