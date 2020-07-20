@@ -12,3 +12,37 @@ services:
     stdin_open: true
     environment:
       - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - proxy
+  back:
+    container_name: back
+    build:
+      context: backend
+    volumes:
+      - ./backend/src:/app
+    ports:
+      - 9000:9000
+    depends_on:
+      - db
+  db:
+    image: mysql:5.7
+    restart: always
+    container_name: db
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db/mysql/volumes:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_USERNAME: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER:     root
+      MYSQL_PASSWORD: root
+      TZ: Asia/Tokyo
+  proxy:
+    build:
+      context: nginx
+    container_name: app-nginx
+    ports:
+      - 8000:80
+    depends_on:
+      - back
