@@ -1,0 +1,4 @@
+development:
+    dialect: mysql
+    dir: migrate/sql
+    datasource: root:password@tcp(db:3306)/dev.db?charset=utf8mb4&collation=utf8mb4_general_ci&parseTime=true

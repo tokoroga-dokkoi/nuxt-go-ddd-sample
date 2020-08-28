@@ -1,47 +1,51 @@
 version: '3'
 services:
-  front:
+  frontend:
     container_name: front
     build:
       context: front
     ports:
       - 3000:3000
     volumes:
-      - ./front/src:/src:cached
+      - ./front/project:/project:cached
     tty: true
     stdin_open: true
     environment:
       - CHOKIDAR_USEPOLLING=true
-  back:
+  backend:
     container_name: back
     build:
       context: backend
     volumes:
-      - ./backend/src:/app
+      - ./backend/src:/go/src/github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: "dev.db"
+      MYSQL_HOST: 'db'
+      MYSQL_PORT: 3306
     ports:
-      - 9000:9000
+      - 8080:8080
     depends_on:
       - db
   db:
     image: mysql:5.7
-    restart: always
     container_name: db
     ports:
       - 3306:3306
     volumes:
       - ./db/mysql/volumes:/var/lib/mysql
     environment:
-      MYSQL_ROOT_USERNAME: root
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER:     root
-      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: password
       TZ: Asia/Tokyo
   proxy:
     build:
       context: nginx
     container_name: app-nginx
+    volumes:
+      - ./nginx/config:/etc/nginx/conf.d
     ports:
-      - 8000:80
+      - 8000:8000
     depends_on:
-      - back
-      - front
+      - backend
+      - frontend
