@@ -27,6 +27,7 @@ module.exports = {
       },
       twitterBlue: '#1DA1F2',
       facebookBlue: '#1877F2',
+      alert: '#ff5252',
     },
   },
   variants: {},

@@ -17,10 +17,9 @@
     <p class="my-10">または</p>
 
     <div class="mt-6 text-left">
-      <label class="block text-gray-700 text-sm font-bold" for="mail"
-        >メールアドレス</label
-      >
-      <a-text-field id="mail" v-model="email" placeholder="メールアドレス" />
+      <a-labeled-item label="メールアドレス" required>
+        <a-text-field id="mail" v-model="email" placeholder="メールアドレス" />
+      </a-labeled-item>
     </div>
 
     <div class="mt-4 text-center">
@@ -34,9 +33,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import ATextField from '@/components/atoms/ATextField.vue'
+import ALabeledItem from '@/components/atoms/ALabeledItem.vue'
 export default Vue.extend({
   components: {
     ATextField,
+    ALabeledItem,
   },
   data() {
     return {
