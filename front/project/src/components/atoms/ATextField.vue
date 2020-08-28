@@ -6,7 +6,7 @@
     :placeholder="placeholder"
     :class="{ rounded: rounded, border: border }"
     v-bind="$attrs"
-    v-on="$listenners"
+    v-on="$listeners"
   />
 </template>
 <script lang="ts">
