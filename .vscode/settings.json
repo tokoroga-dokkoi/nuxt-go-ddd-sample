@@ -1,0 +1,38 @@
+{
+  "eslint.workingDirectories": [
+    "../frontend/", "../app"
+  ],
+  "editor.tabSize": 2,
+  "eslint.validate": [
+    "typescript",
+  ],
+  "javascript.format.enable": true,
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "cSpell.userWords": [
+    "activerecord",
+    "atlassian",
+    "atmedia",
+    "awscli",
+    "camelcase",
+    "codebuild",
+    "csrf",
+    "fugafuga",
+    "hogehoge",
+    "materialdesignicons",
+    "proatmedia",
+    "rspec",
+    "snakecase",
+    "vuetify",
+    "nuxt",
+    "nuxtjs",
+    "Nuxt",
+  ]
+}

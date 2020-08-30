@@ -9,7 +9,8 @@ ENV TZ Asia/Tokyo
 RUN apt-get update && \
     apt-get install -y vim less
 
-WORKDIR /root
+RUN mkdir project
+WORKDIR /project
 
 # install direnv command.
 # - https://github.com/direnv/direnv
@@ -24,8 +25,7 @@ RUN wget -O direnv https://github.com/direnv/direnv/releases/download/$DEV_DIREN
 RUN npm install --global @vue/cli @vue/cli-init nuxt create-nuxt-app
 
 # copy application code from host.
-ADD src /src
-WORKDIR /src/app
+ADD project /project
 
 ## install packages.
 RUN yarn install
