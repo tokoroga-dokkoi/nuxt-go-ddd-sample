@@ -14,6 +14,10 @@
   "dependencies": {
     "@nuxt/typescript-runtime": "^1.0.0",
     "@nuxtjs/axios": "^5.12.0",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@types/firebase": "^3.2.1",
+    "firebase": "^7.19.1",
+    "firebase-tools": "^8.9.2",
     "lodash.camelcase": "^4.3.0",
     "lodash.isobject": "^3.0.2",
     "lodash.snakecase": "^4.1.1",

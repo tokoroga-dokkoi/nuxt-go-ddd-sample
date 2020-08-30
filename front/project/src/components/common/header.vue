@@ -10,6 +10,7 @@
 
       <div class="w-full block lg:flex lg:items-left lg:w-auto">
         <button
+          to="/register"
           class="bg-gray1-500 hover:bg-gray-100 text-black font-bold py-2 px-4 rounted border border-black mr-4"
         >
           ログイン

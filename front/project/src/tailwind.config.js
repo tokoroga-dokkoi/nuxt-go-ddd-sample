@@ -28,6 +28,12 @@ module.exports = {
       twitterBlue: '#1DA1F2',
       facebookBlue: '#1877F2',
       alert: '#ff5252',
+      formOrange: {
+        100: '#fff2df',
+      },
+      formGray: {
+        100: '#f7f7f7',
+      },
     },
   },
   variants: {},

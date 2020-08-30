@@ -21,12 +21,15 @@
       <div class="caption">
         <slot name="hint" />
       </div>
-      <span v-if="!$props.for" class="mt-1">
+      <span v-if="!$props.for" class="mt-2">
         <slot />
       </span>
     </component>
-    <div v-if="$props.for" class="my-1">
+    <div v-if="$props.for" class="mt-2">
       <slot :id="$props.for" />
+    </div>
+    <div class="errors">
+      <slot name="errors" />
     </div>
   </div>
 </template>

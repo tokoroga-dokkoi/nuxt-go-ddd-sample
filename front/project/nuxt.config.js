@@ -1,3 +1,10 @@
+const envPath = `config/.env.${process.env.NODE_ENV || 'development'}`
+require('dotenv').config({ path: envPath })
+const {
+  FIREBASE_API_KEY,
+  FIREBASE_PROJECT_ID,
+  FIREBASE_AUTH_DOMAIN,
+} = process.env
 export default {
   /*
    ** Nuxt rendering mode
@@ -45,6 +52,7 @@ export default {
   plugins: [
     { src: '@/plugins/axiosServerOnly', mode: 'server' },
     { src: '@/plugins/axiosClientOnly', mode: 'client' },
+    { src: '@/plugins/firebase' },
   ],
   /*
    ** Auto import components
@@ -65,6 +73,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    ['@nuxtjs/dotenv', { filename: envPath }],
   ],
   /*
    ** Axios module configuration
@@ -76,4 +85,9 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
+  env: {
+    FIREBASE_API_KEY,
+    FIREBASE_PROJECT_ID,
+    FIREBASE_AUTH_DOMAIN,
+  },
 }

@@ -4,7 +4,7 @@
     type="text"
     :value="value"
     :placeholder="placeholder"
-    :class="{ rounded: rounded, border: border }"
+    :class="[{ rounded: rounded, border: border }, formBgColor]"
     v-bind="$attrs"
     v-on="$listeners"
   />
@@ -12,6 +12,7 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue'
 export default Vue.extend({
+  inheritAttrs: false,
   props: {
     rounded: {
       type: Boolean as PropType<boolean>,
@@ -28,6 +29,27 @@ export default Vue.extend({
     placeholder: {
       type: String as PropType<string | undefined>,
       default: undefined,
+    },
+    required: {
+      type: Boolean as PropType<Boolean>,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      isInvalidBg: 'bg-formOrange-100',
+      isValidBg: 'bg-formGray-100',
+    }
+  },
+  computed: {
+    formBgColor(): string {
+      if (this.required && this.isEmptyValue) {
+        return this.isInvalidBg
+      }
+      return this.isValidBg
+    },
+    isEmptyValue(): boolean {
+      return this.value === '' || this.value === undefined
     },
   },
 })
