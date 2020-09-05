@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	github.com/armon/go-radix v1.0.0 // indirect
+	github.com/bxcodec/faker/v3 v3.5.0
 	github.com/denisenkom/go-mssqldb v0.0.0-20200620013148-b91950f658ec // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/fatih/color v1.9.0 // indirect
