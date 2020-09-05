@@ -16,15 +16,15 @@ func NewEmail(v string) (Email, error) {
   }
 
   // Email Regexp
-  if !reEmail.matchString(v) {
+  if !reEmail.MatchString(v) {
     return "", errors.New("メールアドレスが正しくありません")
   }
 
-  n = Email(v)
+  emailEntity := Email(v)
 
-  return n, nil
+  return emailEntity, nil
 }
 
 func (email Email) Value() string {
-  return string(name)
+  return string(email)
 }
