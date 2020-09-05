@@ -3,6 +3,7 @@ cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMT
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/Knetic/govaluate v3.0.1-0.20171022003610-9aa49832a739+incompatible/go.mod h1:r7JcOSlj0wfOMncg0iLm8Leh48TZaKVeNIfJntJ2wa0=
 github.com/MikiWaraMiki/nuxt-go-ddd-sample v0.0.0-20200720024915-c85205c4812d h1:0B77Nj2MZj1Ukp1VHJOvmplDQtPyvim00tGv9gpbI2s=
+github.com/MikiWaraMiki/nuxt-go-ddd-sample v0.0.0-20200830132411-956943d8fbf5 h1:kfF9dWxFvp1XuZ1uTVBe2BPY8OQL5HO/uI1Vaj1MC74=
 github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src v0.0.0-20200720024915-c85205c4812d h1:zvJYl4QYWRHZ3LGlTwhtpUo/kLGy5PpkitrQRyusVc8=
 github.com/PuerkitoBio/goquery v1.5.1/go.mod h1:GsLWisAFVj4WgDibEWF4pvYnkVQBpKBKeU+7zCJoLcc=
 github.com/Shopify/sarama v1.19.0/go.mod h1:FVkBWblsNy7DGZRfXLU0O9RCGt5g3g3yEuWXgklEdEo=
