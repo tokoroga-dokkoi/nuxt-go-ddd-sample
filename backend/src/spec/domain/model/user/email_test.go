@@ -10,12 +10,11 @@ import (
 func TestEmailEntitySucceeds (t *testing.T) {
 
   var email = faker.Email()
-  var expErr = nil
 
-  emailEntity, err = user.NewEmail(email)
+  _, err := user.NewEmail(email)
 
   if err != nil {
-    t.Errorf("expected %s, got %s", expErr, err)
+    t.Errorf("expected %s, got %s", "nil", err)
   }
 }
 
@@ -24,10 +23,10 @@ func TestEmailEntityFailedIfEmptyEmail (t *testing.T) {
   var email = ""
   var expErr = "メールアドレスの入力は必須です"
 
-  emailEntity, err = user.NewEmail(email)
+  _, err := user.NewEmail(email)
 
   if err == nil {
-    t.Errorf("expected %s, got %s", expected, err)
+    t.Errorf("expected %s, got %s", expErr, err)
   }
 }
 
@@ -35,9 +34,9 @@ func TestEmailEntityFailedIfValidPattern (t *testing.T) {
   var email = "hogehogeho"
   var expErr = "メールアドレスが正しくありません"
 
-  emailEntity, err = user.NewEmail(email)
+  _, err := user.NewEmail(email)
 
   if err == nil {
-    t.Errorf("expected %s, got %s", expected, err)
+    t.Errorf("expected %s, got %s", expErr, err)
   }
 }
