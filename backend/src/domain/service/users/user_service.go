@@ -14,7 +14,7 @@ func NewUserService(userRepository repository.UserRepository) *UserService {
 		userRepository: userRepository,
 	}
 
-	return &userRepository
+	return &userService
 }
 
 func (userSerice *UserService) EmailExists(email user.Email) bool {

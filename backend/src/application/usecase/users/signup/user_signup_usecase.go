@@ -1,12 +1,13 @@
 package usecase_users
 
 import (
-	"errors"
 	"fmt"
 
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/model"
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/model/user"
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/repository"
+	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/service/user"
+	domain_service_users "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/service/users"
 )
 
 type IUserSignUpUsecase interface {
@@ -43,7 +44,7 @@ func (usecase *UserSignUpUsecase) SignUp(command UserSignUpInputCommand) (*model
 	isAlreadyRegister := usecase.userService.EmailExists(user.Email)
 
 	if isAlreadyRegister {
-		return nil, errors.New(fmt.Sprintf("%s is already exists", command.Email))
+		return nil, fmt.Errorf("%s is already exists", command.Email)
 	}
 
 	usecase.userRepository.Save(user)
