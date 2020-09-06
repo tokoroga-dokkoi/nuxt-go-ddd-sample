@@ -4,6 +4,7 @@ import (
 	"errors"
 
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/model"
+	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/model/user"
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/repository"
 )
 
@@ -27,6 +28,18 @@ func (r *UserRepository) Find(id int) (*model.User, error) {
 	}
 
 	return &user, sqlResult.Error
+}
+
+func (r *UserRepository) FindByEmail(email user.Email) (*model.User, error) {
+  var user model.User
+
+  sqlResult := r.sqlHandler.Conn.Where("email = ?", email.String()).Find($user)
+
+  if sqlResult.RecordNotFound() {
+    return nil, errors.New("Record is not found.")
+  }
+
+  return &user, sqlResult.Error
 }
 
 func (r *UserRepository) Save(user *model.User) error {
