@@ -30,8 +30,7 @@ func NewAuthUsecase(userRepository repository.UserRepository) IUserAuthUsecase {
 
 func (usecase *UserAuthUsecase) SignUp(command *UserSignUpInputCommand) (*model.User, error) {
 	// create object
-  email, err := user.NewEmail(command.Email)
-  firstName, err:= 
+	email, err := user.NewEmail(command.Email)
 	firstName, err := user.NewFirstName("new user")
 	lastName, err := user.NewLastName("new user")
 	displayName, err := user.NewDisplayName("new user displayname")
