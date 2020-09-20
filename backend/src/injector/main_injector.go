@@ -17,5 +17,5 @@ func InjectHandlers() handler.IAppHandler {
 	// new app handler
 	appHandler := handler.NewAppHandler(authHandler)
 
-	return
+	return appHandler
 }
