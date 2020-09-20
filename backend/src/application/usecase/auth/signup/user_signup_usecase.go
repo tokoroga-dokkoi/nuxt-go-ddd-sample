@@ -10,25 +10,26 @@ import (
 	domain_service_users "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/service/users"
 )
 
-type IUserSignUpUsecase interface {
-	SignUp() (*model.User, error)
+type IUserAuthUsecase interface {
+	SignUp(UserSignUpInputCommand) (*model.User, error)
 }
 
-type UserSignUpUsecase struct {
+type UserAuthUsecase struct {
 	userRepository repository.UserRepository
 	userService    domain_service_users.UserService
 }
 
-func NewUserSignUpUsecase(useRepository repository.UserRepository, userService domain_service_users.UserService) *UserSignUpUsecase {
-	userSignUpUsecase := UserSignUpUsecase{
-		userRepository: useRepository,
-		userService:    userService,
+func NewAuthUsecase(userRepository repository.UserRepository) IUserAuthUsecase {
+	userService := domain_service_users.NewUserService(userRepository)
+	userAuthUsecase := UserAuthUsecase{
+		userRepository: userRepository,
+		userService:    *userService,
 	}
 
-	return &userSignUpUsecase
+	return &userAuthUsecase
 }
 
-func (usecase *UserSignUpUsecase) SignUp(command UserSignUpInputCommand) (*model.User, error) {
+func (usecase *UserAuthUsecase) SignUp(command UserSignUpInputCommand) (*model.User, error) {
 	// create object
 	email, err := user.NewEmail(command.Email)
 	firstName, err := user.NewFirstName("new user")
@@ -41,9 +42,9 @@ func (usecase *UserSignUpUsecase) SignUp(command UserSignUpInputCommand) (*model
 
 	user := model.NewUser(email, firstName, lastName, displayName)
 	// Find user
-	isAlreadyRegister := usecase.userService.EmailExists(user.Email)
+	isExistUser := usecase.userService.EmailExists(user.Email)
 
-	if isAlreadyRegister {
+	if isExistUser {
 		return nil, fmt.Errorf("%s is already exists", command.Email)
 	}
 

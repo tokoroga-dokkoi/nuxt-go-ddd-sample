@@ -12,10 +12,10 @@ type IAuthHandler interface {
 }
 
 type AuthHandler struct {
-	signUpUsecase usecase_auth.IUserSignUpUsecase
+	signUpUsecase usecase_auth.IUserAuthUsecase
 }
 
-func NewAuthHandler(authUsecase usecase_auth.IUserSignUpUsecase) *AuthHandler {
+func NewAuthHandler(authUsecase usecase_auth.IUserAuthUsecase) IAuthHandler {
 	authHandler := AuthHandler{signUpUsecase: authUsecase}
 
 	return &authHandler
