@@ -24,7 +24,11 @@ func NewAuthHandler(authUsecase usecase_auth.IUserAuthUsecase) IAuthHandler {
 // POST /api/v1/auth/signup
 func (handler *AuthHandler) SignUp() echo.HandlerFunc {
 	return func(c echo.Context) error {
-		var signUpCommand usecase_auth.UserSignUpInputCommand
+		// fetch command
+		signUpCommand := new(usecase_auth.UserSignUpInputCommand)
+		if err := c.Bind(signUpCommand); err != nil {
+			return c.JSON(http.StatusBadRequest, err)
+		}
 		result, err := handler.signUpUsecase.SignUp(signUpCommand)
 		if err != nil {
 			return c.JSON(http.StatusBadRequest, err)
