@@ -24,6 +24,7 @@ require (
 	github.com/olekukonko/tablewriter v0.0.4 // indirect
 	github.com/posener/complete v1.2.3 // indirect
 	github.com/rubenv/sql-migrate v0.0.0-20200616145509-8d140a17f351 // indirect
+	github.com/stretchr/testify v1.4.0
 	github.com/valyala/fasttemplate v1.2.0 // indirect
 	golang.org/x/crypto v0.0.0-20200709230013-948cd5f35899 // indirect
 	golang.org/x/sys v0.0.0-20200722175500-76b94024e4b6 // indirect
