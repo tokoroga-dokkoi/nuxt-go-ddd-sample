@@ -16,7 +16,7 @@ func NewAuthUsecase(sqlHandler mysql.SQLHandler) usecase_auth.IUserAuthUsecase {
 	return usecase_auth.NewAuthUsecase(userRepository)
 }
 
-func InjectAuthHandler(sqlHandler mysql.SQLHandler) handler.IAuthHandler {
+func InjectAuthHandler(sqlHandler &mysql.SQLHandler) handler.IAuthHandler {
 	authUsecase := NewAuthUsecase(sqlHandler)
 
 	return handler.NewAuthHandler(authUsecase)
