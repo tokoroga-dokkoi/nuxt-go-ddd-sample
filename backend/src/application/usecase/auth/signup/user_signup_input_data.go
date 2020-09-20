@@ -1,4 +1,4 @@
-package usecase_users
+package usecase_auth
 
 type UserSignUpInputCommand struct {
 	Email   string `json:"email"`

@@ -1,4 +1,4 @@
-package usecase_auth_signup
+package usecase_auth
 
 import (
 	"fmt"

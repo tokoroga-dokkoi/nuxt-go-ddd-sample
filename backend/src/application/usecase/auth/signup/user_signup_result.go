@@ -1,4 +1,4 @@
-package usecase_users
+package usecase_auth
 
 type UserSignUpResult struct {
 	id        int
