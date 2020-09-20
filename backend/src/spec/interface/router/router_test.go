@@ -28,5 +28,6 @@ func TestRouterSignUpSucceeds(t *testing.T) {
 
 	e.ServeHTTP(rec, req)
 
+	t.Logf("response is %s", rec.Body)
 	assert.Equal(t, http.StatusOK, rec.Code)
 }
