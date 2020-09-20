@@ -10,7 +10,7 @@ import (
 )
 
 type IUserAuthUsecase interface {
-	SignUp(UserSignUpInputCommand) (*model.User, error)
+	SignUp(*UserSignUpInputCommand) (*model.User, error)
 }
 
 type UserAuthUsecase struct {
@@ -28,9 +28,10 @@ func NewAuthUsecase(userRepository repository.UserRepository) IUserAuthUsecase {
 	return &userAuthUsecase
 }
 
-func (usecase *UserAuthUsecase) SignUp(command UserSignUpInputCommand) (*model.User, error) {
+func (usecase *UserAuthUsecase) SignUp(command *UserSignUpInputCommand) (*model.User, error) {
 	// create object
-	email, err := user.NewEmail(command.Email)
+  email, err := user.NewEmail(command.Email)
+  firstName, err:= 
 	firstName, err := user.NewFirstName("new user")
 	lastName, err := user.NewLastName("new user")
 	displayName, err := user.NewDisplayName("new user displayname")

@@ -13,7 +13,7 @@ func NewTestAuthUsecase() IUserAuthUsecase {
 	return &userSignUpUsecase
 }
 
-func (usecase *TestUserSignUpUsecase) SignUp(command UserSignUpInputCommand) (*model.User, error) {
+func (usecase *TestUserSignUpUsecase) SignUp(command *UserSignUpInputCommand) (*model.User, error) {
 
 	// test create object
 	email, err := user.NewEmail("test@example.com")
