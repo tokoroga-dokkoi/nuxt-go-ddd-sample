@@ -24,7 +24,3 @@ func NewUser(email user.Email, firstName user.FirstName, lastName user.LastName,
 		DisplayName: displayName,
 	}
 }
-
-func (user *User) GetId() int {
-	return user.ID
-}

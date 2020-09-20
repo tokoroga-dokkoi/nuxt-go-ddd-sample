@@ -6,7 +6,6 @@ import (
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/model"
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/model/user"
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/repository"
-	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/service/user"
 	domain_service_users "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/service/users"
 )
 

@@ -7,16 +7,16 @@ import (
 	handler "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/interfaces/handler/auth"
 )
 
-func NewUserRepository(sqlHandler mysql.SQLHandler) repository.UserRepository {
+func NewUserRepository(sqlHandler *mysql.SQLHandler) repository.UserRepository {
 	return mysql.NewUserRepository(sqlHandler)
 }
 
-func NewAuthUsecase(sqlHandler mysql.SQLHandler) usecase_auth.IUserAuthUsecase {
+func NewAuthUsecase(sqlHandler *mysql.SQLHandler) usecase_auth.IUserAuthUsecase {
 	userRepository := NewUserRepository(sqlHandler)
 	return usecase_auth.NewAuthUsecase(userRepository)
 }
 
-func InjectAuthHandler(sqlHandler &mysql.SQLHandler) handler.IAuthHandler {
+func InjectAuthHandler(sqlHandler *mysql.SQLHandler) handler.IAuthHandler {
 	authUsecase := NewAuthUsecase(sqlHandler)
 
 	return handler.NewAuthHandler(authUsecase)
