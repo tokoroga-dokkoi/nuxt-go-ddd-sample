@@ -3,6 +3,9 @@ module github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src
 go 1.14
 
 require (
+	cloud.google.com/go v0.66.0 // indirect
+	cloud.google.com/go/firestore v1.3.0 // indirect
+	cloud.google.com/go/storage v1.11.0 // indirect
 	firebase.google.com/go v3.13.0+incompatible // indirect
 	github.com/armon/go-radix v1.0.0 // indirect
 	github.com/bxcodec/faker/v3 v3.5.0
@@ -29,7 +32,13 @@ require (
 	github.com/stretchr/testify v1.4.0
 	github.com/valyala/fasttemplate v1.2.0 // indirect
 	golang.org/x/crypto v0.0.0-20200709230013-948cd5f35899 // indirect
-	golang.org/x/sys v0.0.0-20200722175500-76b94024e4b6 // indirect
+	golang.org/x/exp v0.0.0-20200917184745-18d7dbdd5567 // indirect
+	golang.org/x/sys v0.0.0-20200918174421-af09f7315aff // indirect
+	golang.org/x/tools v0.0.0-20200918232735-d647fc253266 // indirect
+	google.golang.org/api v0.32.0 // indirect
 	google.golang.org/appengine v1.6.6 // indirect
+	google.golang.org/genproto v0.0.0-20200918140846-d0d605568037 // indirect
+	google.golang.org/grpc v1.32.0 // indirect
 	gopkg.in/yaml.v2 v2.3.0 // indirect
+	honnef.co/go/tools v0.0.1-2020.1.5 // indirect
 )

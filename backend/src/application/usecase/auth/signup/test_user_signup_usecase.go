@@ -16,7 +16,7 @@ func NewTestAuthUsecase() IUserAuthUsecase {
 func (usecase *TestUserSignUpUsecase) SignUp(command *UserSignUpInputCommand) (*model.User, error) {
 
 	// test create object
-	email, err := user.NewEmail("test@example.com")
+	email, err := user.NewEmail(command.Email)
 	firstName, err := user.NewFirstName("hogehoge")
 	lastName, err := user.NewLastName("hogehoge")
 	displayName, err := user.NewDisplayName("hogehoge")
