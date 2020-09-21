@@ -9,6 +9,7 @@ import (
 
 type User struct {
 	gorm.Model
+	Uid          string
 	Email        user.Email
 	FirstName    user.FirstName
 	LastName     user.LastName
@@ -16,9 +17,10 @@ type User struct {
 	LastSigninAt time.Time `type:date`
 }
 
-func NewUser(email user.Email, firstName user.FirstName, lastName user.LastName, displayName user.DisplayName) *User {
+func NewUser(email user.Email, uid string, firstName user.FirstName, lastName user.LastName, displayName user.DisplayName) *User {
 	return &User{
 		Email:       email,
+		Uid:         uid,
 		FirstName:   firstName,
 		LastName:    lastName,
 		DisplayName: displayName,

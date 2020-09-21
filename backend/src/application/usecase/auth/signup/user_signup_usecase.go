@@ -18,6 +18,7 @@ type UserAuthUsecase struct {
 	userService    domain_service_users.UserService
 }
 
+// NewAuthUsecase is create UserAuthUsecase Instance
 func NewAuthUsecase(userRepository repository.UserRepository) IUserAuthUsecase {
 	userService := domain_service_users.NewUserService(userRepository)
 	userAuthUsecase := UserAuthUsecase{
@@ -28,9 +29,11 @@ func NewAuthUsecase(userRepository repository.UserRepository) IUserAuthUsecase {
 	return &userAuthUsecase
 }
 
+// SignUp is create user
 func (usecase *UserAuthUsecase) SignUp(command *UserSignUpInputCommand) (*model.User, error) {
 	// create object
 	email, err := user.NewEmail(command.Email)
+	uid := command.Uid
 	firstName, err := user.NewFirstName("new user")
 	lastName, err := user.NewLastName("new user")
 	displayName, err := user.NewDisplayName("new user displayname")
@@ -39,7 +42,7 @@ func (usecase *UserAuthUsecase) SignUp(command *UserSignUpInputCommand) (*model.
 		return nil, err
 	}
 
-	user := model.NewUser(email, firstName, lastName, displayName)
+	user := model.NewUser(email, uid, firstName, lastName, displayName)
 	// Find user
 	isExistUser := usecase.userService.EmailExists(user.Email)
 

@@ -48,6 +48,7 @@ func (r *UserRepository) Save(user *model.User) error {
 	result := r.sqlHandler.Conn.Where("id = ?", user.ID).
 		Assign(model.User{
 			Email:        user.Email,
+			Uid:          user.Uid,
 			FirstName:    user.FirstName,
 			LastName:     user.LastName,
 			DisplayName:  user.DisplayName,
