@@ -3,6 +3,7 @@ module github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src
 go 1.14
 
 require (
+	firebase.google.com/go v3.13.0+incompatible // indirect
 	github.com/armon/go-radix v1.0.0 // indirect
 	github.com/bxcodec/faker/v3 v3.5.0
 	github.com/denisenkom/go-mssqldb v0.0.0-20200620013148-b91950f658ec // indirect
@@ -10,6 +11,7 @@ require (
 	github.com/fatih/color v1.9.0 // indirect
 	github.com/go-sql-driver/mysql v1.5.0 // indirect
 	github.com/godror/godror v0.17.2 // indirect
+	github.com/googleapis/gax-go v1.0.3 // indirect
 	github.com/hashicorp/go-multierror v1.1.0 // indirect
 	github.com/jinzhu/gorm v1.9.15
 	github.com/kelseyhightower/envconfig v1.4.0
