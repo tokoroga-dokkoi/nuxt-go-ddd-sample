@@ -25,7 +25,7 @@ func NewFirebaseAuth() *FirebaseAuth {
 	client, err := app.Auth(ctx)
 
 	if err != nil {
-		log.Fatalf("error getting firebase auth client: %v\n", err)
+		log.Printf("error getting firebase auth client: %v\n", err)
 	}
 
 	return &FirebaseAuth{
@@ -36,14 +36,14 @@ func NewFirebaseAuth() *FirebaseAuth {
 func (auth *FirebaseAuth) ValidateIdToken(idToken string) bool {
 	ctx := context.Background()
 	if auth.client == nil {
-		log.Fatalf("error not setting auth client")
+		log.Printf("error not setting auth client")
 		return false
 	}
 
 	token, err := auth.client.VerifyIDToken(ctx, idToken)
 
 	if err != nil {
-		log.Fatalf("error verifing Id Token: %v\n", err)
+		log.Printf("error verify Id Token: %v\n", err)
 		return false
 	}
 

@@ -29,11 +29,14 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.$auth.signOut()
     this.$auth.onAuthStateChanged(user => {
       // 登録完了のタイミング
       if (user) {
         console.log(user)
+        // email検証
+        if (this.$auth.currentUser.emailVerified) {
+          this.$auth.currentUser.sendEmailVerification()
+        }
       } else {
         console.error('hogehoge')
       }
@@ -42,14 +45,22 @@ export default Vue.extend({
   methods: {
     async signUpWithEmail() {
       try {
-        const email: string = 'sample_user_1@example.com'
+        const email: string = 'sample_user_2@example.com'
         const password: string = 'passWord1234!'
         // test user created
         const res = await this.$auth.createUserWithEmailAndPassword(
           email,
           password
         )
-        console.log(res)
+
+        const idToken = await res.user.getIdToken()
+        console.log(idToken)
+        // backendにリクエスト送信
+        this.$axios.post('/v1/auth/signup', {
+          email: this.email,
+          idToken,
+        })
+
       } catch (e) {
         console.error(e)
       }

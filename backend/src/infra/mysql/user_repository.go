@@ -2,6 +2,7 @@ package mysql
 
 import (
 	"errors"
+	"time"
 
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/model"
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/model/user"
@@ -50,7 +51,7 @@ func (r *UserRepository) Save(user *model.User) error {
 			FirstName:    user.FirstName,
 			LastName:     user.LastName,
 			DisplayName:  user.DisplayName,
-			LastSigninAt: user.LastSigninAt,
+			LastSigninAt: time.Now(),
 		}).FirstOrCreate(&user)
 
 	return result.Error

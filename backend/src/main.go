@@ -26,7 +26,7 @@ func main() {
 	e.Use(middleware.BodyDumpWithConfig(middleware.BodyDumpConfig{
 		Skipper: func(c echo.Context) bool {
 			if c.Request().Header.Get("X-Debug") == "" {
-				return true
+				return false
 			}
 			return false
 		},

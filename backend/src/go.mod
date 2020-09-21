@@ -6,7 +6,7 @@ require (
 	cloud.google.com/go v0.66.0 // indirect
 	cloud.google.com/go/firestore v1.3.0 // indirect
 	cloud.google.com/go/storage v1.11.0 // indirect
-	firebase.google.com/go v3.13.0+incompatible // indirect
+	firebase.google.com/go v3.13.0+incompatible
 	github.com/armon/go-radix v1.0.0 // indirect
 	github.com/bxcodec/faker/v3 v3.5.0
 	github.com/denisenkom/go-mssqldb v0.0.0-20200620013148-b91950f658ec // indirect
