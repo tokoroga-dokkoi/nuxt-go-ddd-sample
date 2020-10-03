@@ -6,27 +6,26 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-// EmailVerification はユーザの仮登録データを表すドメインモデル
-type EmailVerification struct {
+// UserEmailVerification はメールアドレスの認証を表すドメインモデル
+type UserEmailVerification struct {
 	gorm.Model
 	Email                   Email
 	RegistrationURLToken    RegistrationUrlToken
-	Status                  EmailVerificationStatus
+	Status                  UserEmailVerificationStatus
 	RegistrationEmailSentAt time.Time `type:datetime`
 	URLTokenExpiredAt       time.Time `type:datetime`
 }
 
-// NewEmailVerification はユーザの仮登録オブジェクトを生成する
-func NewEmailVerification(email Email) *EmailVerification {
-	token := NewRegistrationUrlToken()
-	status, _ := NewEmailVerificationStatus("waiting_registration")
-	// デフォルトは１週間
-	tokenExpiredAt := time.Now().AddDate(0, 0, 7)
-	return &EmailVerification{
+// NewUserEmailVerification はユーザの仮登録オブジェクトを生成する
+func NewUserEmailVerification(email Email, status UserEmailVerificationStatus, registrationURLToken RegistrationUrlToken) *UserEmailVerification {
+	emailSentAt := time.Now()
+	urlTokenExpiredAt := emailSentAt.AddDate(0, 0, 7)
+
+	return &UserEmailVerification{
 		Email:                   email,
-		RegistrationURLToken:    token,
+		RegistrationURLToken:    registrationURLToken,
 		Status:                  status,
-		RegistrationEmailSentAt: time.Now(),
-		URLTokenExpiredAt:       tokenExpiredAt,
+		RegistrationEmailSentAt: emailSentAt,
+		URLTokenExpiredAt:       urlTokenExpiredAt,
 	}
 }

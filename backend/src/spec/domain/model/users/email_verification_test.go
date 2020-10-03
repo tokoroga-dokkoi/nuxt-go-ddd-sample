@@ -7,15 +7,15 @@ import (
 	"github.com/bxcodec/faker/v3"
 )
 
-// EmailVerificationが生成されること
-func TestEmailVerificationEntitySucceeds(t *testing.T) {
+// UserEmailVerificationが生成されること
+func TestUserEmailVerificationEntitySucceeds(t *testing.T) {
 	email, _ := domain_model_users.NewEmail(
 		faker.Email(),
 	)
-	status, _ := domain_model_users.NewEmailVerificationStatus("waiting_registration")
+	status, _ := domain_model_users.NewUserEmailVerificationStatus("waiting_registration")
 	token := domain_model_users.NewRegistrationUrlToken()
 
-	result := domain_model_users.NewEmailVerification(email, status, token)
+	result := domain_model_users.NewUserEmailVerification(email, status, token)
 
 	// トークンの執行期限が登録の7日後になっていること
 	expectedExpiredAt := result.RegistrationEmailSentAt.AddDate(0, 0, 7)

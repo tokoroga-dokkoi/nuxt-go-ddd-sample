@@ -2,11 +2,11 @@ package domain_model_users
 
 import "errors"
 
-// EmailVerificationStatus は仮登録の状態を示す(waiting_registration, registered, expired)
-type EmailVerificationStatus string
+// UserEmailVerificationStatus は仮登録の状態を示す(waiting_registration, registered, expired)
+type UserEmailVerificationStatus string
 
-// NewEmailVerificationStatus はコンストラクタ
-func NewEmailVerificationStatus(status string) (EmailVerificationStatus, error) {
+// NewUserEmailVerificationStatus はコンストラクタ
+func NewUserEmailVerificationStatus(status string) (UserEmailVerificationStatus, error) {
 
 	if status == "" {
 		return "", errors.New("ステータスが入力されていません")
@@ -16,7 +16,7 @@ func NewEmailVerificationStatus(status string) (EmailVerificationStatus, error) 
 		return "", errors.New("仮登録のステータスが不正です")
 	}
 
-	return EmailVerificationStatus(status), nil
+	return UserEmailVerificationStatus(status), nil
 }
 
 // isStatusValid は引数で受け取ったstatusがABLE_STATUSに含まれているか判定する
