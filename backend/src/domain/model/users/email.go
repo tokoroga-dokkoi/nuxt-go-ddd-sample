@@ -1,4 +1,4 @@
-package user
+package domain_model_users
 
 import (
 	"errors"
