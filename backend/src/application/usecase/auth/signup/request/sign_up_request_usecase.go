@@ -1,8 +1,7 @@
 package usecase_auth_signup_request
 
 import (
-	"errors"
-
+	application_common "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/application/common"
 	domain_model_users "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/model/users"
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/repository"
 	domain_service_users "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/service/users"
@@ -25,21 +24,21 @@ func NewUserSignUpRequestUsecase(repo repository.IUserEmailVerificationRepositor
 }
 
 // SignUpRequest は仮登録を実装する
-func (uc *UserSignUpRequestUsecase) SignUpRequest(command UserSignUpRequestInputCommand) (*UserAuthSignUpRequestDto, application_common.IErrorResponse) {
+func (uc *UserSignUpRequestUsecase) SignUpRequest(command UserSignUpRequestInputCommand) (*UserAuthSignUpRequestDto, *application_common.IErrorResponse) {
 	email, err := domain_model_users.NewEmail(command.Email)
 	if err != nil {
-		return nil, err
+		return nil, application_common.NewUnProcessableErrorResponse(err)
 	}
 	status, err := domain_model_users.NewUserEmailVerificationStatus("waiting_registration")
 
 	if err != nil {
-		return nil, err
+		return nil, application_common.NewUnProcessableErrorResponse(err)
 	}
 	token := domain_model_users.NewRegistrationUrlToken()
 
 	// すでに存在しているか検証
 	if uc.emailVerificationService.Exist(email) {
-		return nil, errors.New("already exist")
+		return nil, application_common.NewBadRequestErrorResponse(err)
 	}
 
 	// Create Entity
@@ -49,7 +48,7 @@ func (uc *UserSignUpRequestUsecase) SignUpRequest(command UserSignUpRequestInput
 	err = uc.emailVerificationRepository.Save(emailVerification)
 	// Failed Save
 	if err != nil {
-		return nil, err
+		return nil, application_common.NewInternalServerErrorResponse(err)
 	}
 
 	// Create DTO
