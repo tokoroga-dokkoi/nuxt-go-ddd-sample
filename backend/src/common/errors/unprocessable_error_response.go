@@ -1,4 +1,4 @@
-package application_common
+package common
 
 // UnprocessableErrorResponse は422エラーを示す
 type UnprocessableErrorResponse struct {

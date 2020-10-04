@@ -1,4 +1,4 @@
-package application_common
+package common
 
 // InternalServerErrorResponse は500エラーを示す
 type InternalServerErrorResponse struct {
