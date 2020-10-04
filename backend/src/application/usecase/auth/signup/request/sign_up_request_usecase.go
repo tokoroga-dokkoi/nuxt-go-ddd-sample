@@ -25,7 +25,7 @@ func NewUserSignUpRequestUsecase(repo repository.IUserEmailVerificationRepositor
 }
 
 // SignUpRequest は仮登録を実装する
-func (uc *UserSignUpRequestUsecase) SignUpRequest(command UserSignUpRequestInputCommand) (*UserAuthSignUpRequestDto, error) {
+func (uc *UserSignUpRequestUsecase) SignUpRequest(command UserSignUpRequestInputCommand) (*UserAuthSignUpRequestDto, application_common.IErrorResponse) {
 	email, err := domain_model_users.NewEmail(command.Email)
 	if err != nil {
 		return nil, err
@@ -47,7 +47,6 @@ func (uc *UserSignUpRequestUsecase) SignUpRequest(command UserSignUpRequestInput
 
 	// Save
 	err = uc.emailVerificationRepository.Save(emailVerification)
-
 	// Failed Save
 	if err != nil {
 		return nil, err
