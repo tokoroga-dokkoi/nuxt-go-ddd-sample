@@ -1,4 +1,4 @@
-package usecase_auth_signup_request
+package usecase_auth
 
 import application_common "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/application/common"
 

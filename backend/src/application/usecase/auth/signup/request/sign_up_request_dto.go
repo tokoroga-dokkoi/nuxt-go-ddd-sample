@@ -1,4 +1,4 @@
-package usecase_auth_signup_request
+package usecase_auth
 
 import (
 	"time"
