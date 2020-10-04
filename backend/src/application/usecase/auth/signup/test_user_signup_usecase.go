@@ -16,6 +16,7 @@ func NewTestAuthUsecase() IUserAuthUsecase {
 func (usecase *TestUserSignUpUsecase) SignUp(command *UserSignUpInputCommand) (*model.User, error) {
 
 	// test create object
+	uid := "hogehoge"
 	email, err := user.NewEmail(command.Email)
 	firstName, err := user.NewFirstName("hogehoge")
 	lastName, err := user.NewLastName("hogehoge")
@@ -25,7 +26,7 @@ func (usecase *TestUserSignUpUsecase) SignUp(command *UserSignUpInputCommand) (*
 		return nil, err
 	}
 
-	user := model.NewUser(email, firstName, lastName, displayName)
+	user := model.NewUser(email, uid, firstName, lastName, displayName)
 
 	return user, nil
 }
