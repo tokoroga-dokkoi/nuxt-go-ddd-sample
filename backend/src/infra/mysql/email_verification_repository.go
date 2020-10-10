@@ -10,11 +10,11 @@ import (
 
 // UserEmailVerificationRepository はsqlHandlerをフィールドとしてもつ
 type UserEmailVerificationRepository struct {
-	sqlHandler SQLHandler
+	sqlHandler *SQLHandler
 }
 
 // NewUserEmailVerificationRepository はコンストラクタ
-func NewUserEmailVerificationRepository(sqlHandler SQLHandler) repository.IUserEmailVerificationRepository {
+func NewUserEmailVerificationRepository(sqlHandler *SQLHandler) repository.IUserEmailVerificationRepository {
 	repo := UserEmailVerificationRepository{sqlHandler}
 
 	return &repo
