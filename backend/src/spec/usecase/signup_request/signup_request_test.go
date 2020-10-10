@@ -1,4 +1,4 @@
-package TestSignupRequest
+package testsignuprequest
 
 import (
 	"testing"
