@@ -8,6 +8,8 @@ import (
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/repository"
 	domain_service_users "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/service/users"
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/infra/mysql"
+	testshared "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/spec/shared"
+
 	"github.com/bxcodec/faker/v3"
 )
 
