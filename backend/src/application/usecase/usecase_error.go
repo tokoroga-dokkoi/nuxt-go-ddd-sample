@@ -13,6 +13,18 @@ type UsecaseError struct {
 	originalError error
 }
 
+// NewUsecaseError はユースケース層で発生したエラーのコンストラクタ
+func NewUsecaseError(code string, message []string, originalError error) *UsecaseError {
+	errCode := handler.ErrorCode("400")
+	errObj := UsecaseError{
+		code:          errCode,
+		message:       message,
+		originalError: originalError,
+	}
+
+	return &errObj
+}
+
 // Code はErrorコードを返却する
 func (e *UsecaseError) Code() handler.ErrorCode {
 	return e.code

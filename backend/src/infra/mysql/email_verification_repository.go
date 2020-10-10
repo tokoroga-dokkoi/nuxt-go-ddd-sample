@@ -2,6 +2,7 @@ package mysql
 
 import (
 	"errors"
+	"fmt"
 
 	domain_model_users "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/model/users"
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/repository"
@@ -38,5 +39,11 @@ func (r *UserEmailVerificationRepository) Save(emailVerification *domain_model_u
 	result := r.sqlHandler.Conn.Where("id", emailVerification.ID).
 		Assign(emailVerification).FirstOrCreate(&emailVerification)
 
-	return result.Error
+	if result.Error != nil {
+		errMes := fmt.Sprintf("[UserEmailVerificationRepository.Save] failed to save email verification. email: %s", emailVerification.Email.Value())
+		errObj := NewMySQLError(errMes, result.Error)
+		return errObj
+	}
+
+	return nil
 }
