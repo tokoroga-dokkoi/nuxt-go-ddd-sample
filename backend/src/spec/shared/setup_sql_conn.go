@@ -1,4 +1,4 @@
-package TestShared
+package testshared
 
 import (
 	"os"
