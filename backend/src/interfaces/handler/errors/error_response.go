@@ -1,4 +1,4 @@
-package handler
+package errors
 
 // errorResponse define struct hold data
 // response error for client
