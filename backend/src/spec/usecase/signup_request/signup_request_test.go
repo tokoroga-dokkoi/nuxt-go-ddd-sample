@@ -13,7 +13,7 @@ import (
 
 type testDBUS struct {
 	repo repository.IUserEmailVerificationRepository
-	ds   domain_service_users.EmailVerificationService
+	ds   *domain_service_users.EmailVerificationService
 	uc   signup_request.IUserAuthSignUpRequestUsecase
 }
 
@@ -28,7 +28,7 @@ func newTestRepo() repository.IUserEmailVerificationRepository {
 func newTestModule() *testDBUS {
 	repo := newTestRepo()
 	ds := domain_service_users.NewEmailVerificationService(repo)
-	uc := signup_request.NewUserSignUpRequestUsecase(repo, ds)
+	uc := signup_request.NewUserSignUpRequestUsecase(&repo, ds)
 
 	testObj := testDBUS{
 		repo: repo,

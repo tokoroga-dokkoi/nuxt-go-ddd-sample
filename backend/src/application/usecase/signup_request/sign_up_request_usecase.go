@@ -12,12 +12,12 @@ import (
 
 // UserSignUpRequestUsecase はユーザの仮登録を行うユースケース
 type UserSignUpRequestUsecase struct {
-	emailVerificationRepository repository.IUserEmailVerificationRepository
-	emailVerificationService    domain_service_users.EmailVerificationService
+	emailVerificationRepository *repository.IUserEmailVerificationRepository
+	emailVerificationService    *domain_service_users.EmailVerificationService
 }
 
 // NewUserSignUpRequestUsecase はコンストトラクタ
-func NewUserSignUpRequestUsecase(repo repository.IUserEmailVerificationRepository, domain_service domain_service_users.EmailVerificationService) IUserAuthSignUpRequestUsecase {
+func NewUserSignUpRequestUsecase(repo *repository.IUserEmailVerificationRepository, domain_service *domain_service_users.EmailVerificationService) IUserAuthSignUpRequestUsecase {
 	usecase := UserSignUpRequestUsecase{
 		emailVerificationRepository: repo,
 		emailVerificationService:    domain_service,
