@@ -3,21 +3,20 @@ package usecase
 import (
 	"strings"
 
-	handler "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/interfaces/handler/errors"
+	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/interfaces/handler/errors"
 )
 
 // UsecaseError はユースケース層で発生したエラーをハンドリングするクラス
 type UsecaseError struct {
-	code          handler.ErrorCode
+	code          string
 	message       []string
 	originalError error
 }
 
 // NewUsecaseError はユースケース層で発生したエラーのコンストラクタ
 func NewUsecaseError(code string, message []string, originalError error) *UsecaseError {
-	errCode := handler.ErrorCode("400")
 	errObj := UsecaseError{
-		code:          errCode,
+		code:          code,
 		message:       message,
 		originalError: originalError,
 	}
@@ -26,8 +25,9 @@ func NewUsecaseError(code string, message []string, originalError error) *Usecas
 }
 
 // Code はErrorコードを返却する
-func (e *UsecaseError) Code() handler.ErrorCode {
-	return e.code
+func (e *UsecaseError) Code() errors.ErrorCode {
+	errCode := errors.ErrorCode(e.code)
+	return errCode
 }
 
 // Message はユーザに出力するエラーメッセージを返却する

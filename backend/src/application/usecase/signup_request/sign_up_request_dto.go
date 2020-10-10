@@ -8,16 +8,16 @@ import (
 
 // UserAuthSignUpRequestDto は仮登録のレスポンス用DTO
 type UserAuthSignUpRequestDto struct {
-	id        uint      `json:"id"`
-	email     string    `json:"email"`
-	createdAt time.Time `json:"createdAt"`
+	Id        uint
+	Email     string
+	CreatedAt time.Time
 }
 
 // NewUserAuthSignUpRequestDto はコンストラクタ
 func NewUserAuthSignUpRequestDto(emailVerification *domain_model_users.UserEmailVerification) UserAuthSignUpRequestDto {
 	return UserAuthSignUpRequestDto{
-		id:        emailVerification.ID,
-		email:     emailVerification.Email.Value(),
-		createdAt: emailVerification.CreatedAt,
+		Id:        emailVerification.ID,
+		Email:     emailVerification.Email.Value(),
+		CreatedAt: emailVerification.CreatedAt,
 	}
 }

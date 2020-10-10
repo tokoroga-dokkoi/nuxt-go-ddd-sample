@@ -43,8 +43,8 @@ func (uc *UserSignUpRequestUsecase) SignUpRequest(command *UserSignUpRequestInpu
 		errorObj := usecase.NewUsecaseError("400", entityErrors, err)
 		return nil, errorObj
 	}
-
 	token := domain_model_users.NewRegistrationUrlToken()
+
 	// すでに存在しているか検証
 	if uc.emailVerificationService.Exist(email) {
 		errMes := []string{"すでに仮登録済です。本登録メールをご確認ください。"}
