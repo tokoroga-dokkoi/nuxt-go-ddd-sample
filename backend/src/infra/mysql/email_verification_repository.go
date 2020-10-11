@@ -36,7 +36,7 @@ func (r *UserEmailVerificationRepository) FindByEmail(email domain_model_users.E
 // Save は1件レコードを生成するメソッド
 func (r *UserEmailVerificationRepository) Save(emailVerification *domain_model_users.UserEmailVerification) error {
 
-	result := r.sqlHandler.Conn.Where("id", emailVerification.ID).
+	result := r.sqlHandler.Conn.Where("id = ?", emailVerification.ID).
 		Assign(emailVerification).FirstOrCreate(&emailVerification)
 
 	if result.Error != nil {

@@ -1,13 +1,24 @@
 package domain_model_users
 
-import "github.com/dgrijalva/jwt-go"
+import (
+	"errors"
+	"time"
 
-type RegistrationUrlToken *jwt.Token
+	"github.com/dgrijalva/jwt-go"
+)
+
+type RegistrationUrlToken string
 
 // 認証用URLのトークンを発行する
-func NewRegistrationUrlToken() RegistrationUrlToken {
-
+func NewRegistrationUrlToken() (RegistrationUrlToken, error) {
+	// tokenを変えるため時刻文字列をkeyにする
+	secret := time.Now()
 	token := jwt.New(jwt.SigningMethodHS256)
 
-	return RegistrationUrlToken(token)
+	strToken, err := token.SignedString([]byte(secret.String()))
+
+	if err != nil {
+		return "", errors.New("トークンの発行に失敗しました")
+	}
+	return RegistrationUrlToken(strToken), nil
 }

@@ -12,12 +12,12 @@ import (
 
 // UserSignUpRequestUsecase はユーザの仮登録を行うユースケース
 type UserSignUpRequestUsecase struct {
-	emailVerificationRepository *repository.IUserEmailVerificationRepository
+	emailVerificationRepository repository.IUserEmailVerificationRepository
 	emailVerificationService    *domain_service_users.EmailVerificationService
 }
 
 // NewUserSignUpRequestUsecase はコンストトラクタ
-func NewUserSignUpRequestUsecase(repo *repository.IUserEmailVerificationRepository, domain_service *domain_service_users.EmailVerificationService) IUserAuthSignUpRequestUsecase {
+func NewUserSignUpRequestUsecase(repo repository.IUserEmailVerificationRepository, domain_service *domain_service_users.EmailVerificationService) IUserAuthSignUpRequestUsecase {
 	usecase := UserSignUpRequestUsecase{
 		emailVerificationRepository: repo,
 		emailVerificationService:    domain_service,
@@ -38,12 +38,15 @@ func (uc *UserSignUpRequestUsecase) SignUpRequest(command *UserSignUpRequestInpu
 	if err != nil {
 		entityErrors = append(entityErrors, err.Error())
 	}
+	token, err := domain_model_users.NewRegistrationUrlToken()
+	if err != nil {
+		entityErrors = append(entityErrors, err.Error())
+	}
 	// Value Object Create Error
 	if len(entityErrors) > 0 {
 		errorObj := usecase.NewUsecaseError("400", entityErrors, err)
 		return nil, errorObj
 	}
-	token := domain_model_users.NewRegistrationUrlToken()
 
 	// すでに存在しているか検証
 	if uc.emailVerificationService.Exist(email) {
