@@ -1,4 +1,4 @@
-package handler
+package users_signup_handler
 
 import "github.com/labstack/echo"
 
