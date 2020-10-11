@@ -4,6 +4,13 @@
     <p class="font-bold text-black mt-2">
       サブテキストサブテキストサブテキストサブテキスト
     </p>
+    <div v-if="isError" class="bg-red-600 font-bold text-white mt-3">
+      <ul class="list-disc">
+        <li v-for="(mes, index) in errors" :key="index">
+          {{ mes }}
+        </li>
+      </ul>
+    </div>
     <sign-up-form
       class="mt-4"
       :email.sync="email"
@@ -23,9 +30,14 @@ export default Vue.extend({
   components: {
     SignUpForm,
   },
+  fetch(context) {
+    console.log(context.store.state)
+  },
   data() {
     return {
       email: '',
+      isError: false,
+      errors: [],
     }
   },
   mounted() {
@@ -43,26 +55,20 @@ export default Vue.extend({
     })
   },
   methods: {
+    // Eメールでの仮登録
     async signUpWithEmail() {
+      this.isError = false
+      this.errors = []
       try {
-        const email: string = 'sample_user_2@example.com'
-        const password: string = 'passWord1234!'
-        // test user created
-        const res = await this.$auth.createUserWithEmailAndPassword(
-          email,
-          password
-        )
-
-        const idToken = await res.user.getIdToken()
-        console.log(idToken)
-        // backendにリクエスト送信
-        this.$axios.post('/v1/auth/signup', {
+        const res = await this.$axios.post('/v1/users/signup_request', {
           email: this.email,
-          idToken,
         })
 
+        console.log(res)
       } catch (e) {
-        console.error(e)
+        this.errors = e.response.data.errors
+        console.log(this.errors)
+        this.isError = true
       }
     },
     signUpWithGoogle() {

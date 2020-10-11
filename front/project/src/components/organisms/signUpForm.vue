@@ -30,6 +30,10 @@
         <template v-if="isError" v-slot:errors>
           <p class="text-sm text-alert">{{ errorMessage }}</p>
         </template>
+
+        <p class="text-sm mt-5">
+          登録したメールアドレスに本登録用の案内メールが届きます。
+        </p>
       </a-labeled-item>
     </div>
 
