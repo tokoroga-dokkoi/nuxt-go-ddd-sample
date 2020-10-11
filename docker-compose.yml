@@ -22,10 +22,12 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: "dev.db"
+      MYSQL_TEST_DATABASE: "test.db"
       MYSQL_HOST: 'db'
       MYSQL_PORT: 3306
+      GOOGLE_APPLICATION_CREDENTIALS: "secret/key.json"
     ports:
-      - 8080:8080
+      - 3001:3001
     depends_on:
       - db
   db:
