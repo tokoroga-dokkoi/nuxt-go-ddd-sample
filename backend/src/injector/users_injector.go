@@ -10,7 +10,6 @@ import (
 func NewUserRepository(sqlHandler *mysql.SQLHandler) repository.UserRepository {
 	return mysql.NewUserRepository(sqlHandler)
 }
-
 func NewAuthUsecase(sqlHandler *mysql.SQLHandler) usecase_auth.IUserAuthUsecase {
 	userRepository := NewUserRepository(sqlHandler)
 	return usecase_auth.NewAuthUsecase(userRepository)

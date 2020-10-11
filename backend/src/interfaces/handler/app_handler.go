@@ -4,6 +4,7 @@ import handler "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/interface
 
 type IAppHandler interface {
 	handler.IAuthHandler
+	handler.ISignUpRequestHandler
 }
 
 func NewAppHandler(handler handler.IAuthHandler) IAppHandler {
