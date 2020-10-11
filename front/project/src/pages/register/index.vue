@@ -1,23 +1,32 @@
 <template>
   <div class="mt-20 text-center signup-form">
-    <h2 class="text-5xl font-bold">ユーザ登録</h2>
-    <p class="font-bold text-black mt-2">
-      サブテキストサブテキストサブテキストサブテキスト
-    </p>
-    <div v-if="isError" class="bg-red-600 font-bold text-white mt-3">
-      <ul class="list-disc">
-        <li v-for="(mes, index) in errors" :key="index">
-          {{ mes }}
-        </li>
-      </ul>
-    </div>
-    <sign-up-form
-      class="mt-4"
-      :email.sync="email"
-      @signup-email="signUpWithEmail"
-      @signup-google="signUpWithGoogle"
-      @signup-facebook="signUpWithFacebook"
-    />
+    <template v-if="!isSuccess">
+      <h2 class="text-5xl font-bold">ユーザ登録</h2>
+      <p class="font-bold text-black mt-2">
+        サブテキストサブテキストサブテキストサブテキスト
+      </p>
+      <div v-if="isError" class="bg-red-600 font-bold text-white mt-3">
+        <ul class="list-disc">
+          <li v-for="(mes, index) in errors" :key="index">
+            {{ mes }}
+          </li>
+        </ul>
+      </div>
+      <sign-up-form
+        class="mt-4"
+        :email.sync="email"
+        @signup-email="signUpWithEmail"
+        @signup-google="signUpWithGoogle"
+        @signup-facebook="signUpWithFacebook"
+      />
+    </template>
+    <template v-else>
+      <h2 class="text-5xl font-bold">仮登録が完了しました</h2>
+      <div class="font-bold text-black mt-2">
+        <p>{{ email }}宛に本登録用のURLを送らせていただきました。</p>
+        <p>メールに記載されたURLから、本登録を行ってください</p>
+      </div>
+    </template>
   </div>
 </template>
 <script lang="ts">
@@ -37,6 +46,7 @@ export default Vue.extend({
     return {
       email: '',
       isError: false,
+      isSuccess: false,
       errors: [],
     }
   },
@@ -60,14 +70,12 @@ export default Vue.extend({
       this.isError = false
       this.errors = []
       try {
-        const res = await this.$axios.post('/v1/users/signup_request', {
+        await this.$axios.post('/v1/users/signup_request', {
           email: this.email,
         })
-
-        console.log(res)
+        this.isSuccess = true
       } catch (e) {
         this.errors = e.response.data.errors
-        console.log(this.errors)
         this.isError = true
       }
     },
