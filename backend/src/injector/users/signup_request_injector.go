@@ -1,17 +1,19 @@
-package injector
+package usersinjector
 
 import (
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/application/usecase/signup_request"
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/repository"
 	domain_service_users "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/domain/service/users"
 	"github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/infra/mysql"
-	handler "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/interfaces/handler/users"
+	users_signup_handler "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/interfaces/handler/users/signup_request"
 )
 
+// NewEmailVerificationRepository は本番用のSQLHandlerを作成する
 func NewEmailVerificationRepository(sqlHandler *mysql.SQLHandler) repository.IUserEmailVerificationRepository {
 	return mysql.NewUserEmailVerificationRepository(sqlHandler)
 }
 
+// NewSignUpRequestUsecase はユースケースをDIする
 func NewSignUpRequestUsecase(sqlHandler *mysql.SQLHandler) signup_request.IUserAuthSignUpRequestUsecase {
 	repo := NewEmailVerificationRepository(sqlHandler)
 	ds := domain_service_users.NewEmailVerificationService(repo)
@@ -20,10 +22,9 @@ func NewSignUpRequestUsecase(sqlHandler *mysql.SQLHandler) signup_request.IUserA
 	return usecase
 }
 
-func SignUpRequestInjector(sqlHandler *mysql.SQLHandler) handler.ISignUpRequestHandler {
-  usecase := NewSignUpRequestUsecase(sqlHandler)
+// NewSignUpRequestInjector は仮登録のDIコンテナ
+func NewSignUpRequestInjector(sqlHandler *mysql.SQLHandler) users_signup_handler.ISignUpRequestHandler {
+	usecase := NewSignUpRequestUsecase(sqlHandler)
 
-  return handler.SignUpRequestHandler {
-    signupRequestUsecase: usecase
-  }
+	return users_signup_handler.NewSignUpRequestHandler(usecase)
 }
