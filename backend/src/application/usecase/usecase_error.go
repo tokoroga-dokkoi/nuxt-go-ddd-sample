@@ -31,7 +31,7 @@ func (e *UsecaseError) Code() errors.ErrorCode {
 }
 
 // Message はユーザに出力するエラーメッセージを返却する
-func (e *UsecaseError) Message() []string {
+func (e *UsecaseError) Messages() []string {
 	return e.message
 }
 

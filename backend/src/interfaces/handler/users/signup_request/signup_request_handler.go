@@ -1,6 +1,7 @@
 package users_signup_handler
 
 import (
+	"fmt"
 	"net/http"
 
 	signup_request "github.com/MikiWaraMiki/nuxt-go-ddd-sample/backend/src/application/usecase/signup_request"
@@ -25,13 +26,17 @@ func NewSignUpRequestHandler(usecase signup_request.IUserAuthSignUpRequestUsecas
 
 // SignUpRequest : POST /api/v1/users/signup_request
 func (handler *SignUpRequestHandler) SignUpRequest() echo.HandlerFunc {
+	fmt.Println("[Call] ハンドラーが呼び出されました")
 	return func(ec echo.Context) error {
 		c := ec.(*errors.AppErrorContext)
 		// input command
 		params := new(signup_request.UserSignUpRequestInputCommand)
-		c.Bind(params)
+		if err := c.Bind(params); err != nil {
+			fmt.Println(err.Error())
+			fmt.Println("bind failed")
+			return c.ErrorResponse(err)
+		}
 
-		// call usecase
 		dto, err := handler.signUpRequestUsecase.SignUpRequest(params)
 
 		// error response
@@ -41,11 +46,11 @@ func (handler *SignUpRequestHandler) SignUpRequest() echo.HandlerFunc {
 
 		// json response
 		resJson := emailVerificationJsonResponse{
-			id:        dto.Id,
-			email:     dto.Email,
-			createdAt: dto.CreatedAt,
+			Id:        dto.Id,
+			Email:     dto.Email,
+			CreatedAt: dto.CreatedAt,
 		}
 
-		return c.JSON(http.StatusOK, resJson)
+		return c.JSON(http.StatusCreated, resJson)
 	}
 }

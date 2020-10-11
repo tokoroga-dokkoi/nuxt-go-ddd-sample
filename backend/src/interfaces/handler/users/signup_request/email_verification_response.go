@@ -5,9 +5,9 @@ import "time"
 // emailVerificationJsonResponse は201レスポンス
 type emailVerificationJsonResponse struct {
 	// 登録ID
-	id uint `json:"id"`
+	Id uint `json:"id"`
 	// 仮登録時のメールアドレス
-	email string `json:"email"`
+	Email string `json:"email"`
 	// 仮登録日時
-	createdAt time.Time `json:"createdAt"`
+	CreatedAt time.Time `json:"createdAt"`
 }

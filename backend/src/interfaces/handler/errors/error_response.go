@@ -8,13 +8,11 @@ type errorResponse struct {
 }
 
 // generalError interface should be
-type generalError interface {
+type GeneralError interface {
 	Code() ErrorCode
 	Messages() []string
-	Error() string
 }
 
 type internalError interface {
 	Internal() bool
-	Error() string
 }

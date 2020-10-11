@@ -6,7 +6,10 @@ import (
 )
 
 // InitRouting is assign route
-func InitRouting(e *echo.Echo, handler handler.IAppHandler) {
-	// /api/v1/auth/signup
-	e.POST("/api/v1/auth/signup", handler.SignUp())
+func InitRouting(e *echo.Echo, handler handler.AppHandler) {
+	/*
+	   ユーザの仮登録
+	   /api/v1/users/signup_request
+	*/
+	e.POST("/api/v1/users/signup_request", handler.UsersHandler.SignUpRequestHandler.SignUpRequest())
 }
