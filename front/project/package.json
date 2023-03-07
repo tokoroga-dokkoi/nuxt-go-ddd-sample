@@ -22,7 +22,7 @@
     "lodash.isobject": "^3.0.2",
     "lodash.snakecase": "^4.1.1",
     "nuxt": "^2.14.0",
-    "qs": "^6.9.4"
+    "qs": "^6.9.7"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.0",
